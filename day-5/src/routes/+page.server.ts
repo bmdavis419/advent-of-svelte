@@ -1,21 +1,16 @@
 export const load = async () => {
-	const testing = testPromise();
-
 	return {
 		streamed: {
-			testing
+			testing: sleep('Hello There', 4000)
 		},
 		demo: 'string'
 	};
 };
 
-const testPromise = async () => {
-	return new Promise<string>((resolve) => {
+function sleep(value: string, ms: number) {
+	return new Promise((fulfil) => {
 		setTimeout(() => {
-			// Other things to do before completion of the promise
-			console.log('Did something');
-			// The fulfillment value of the promise
-			resolve('hey');
-		}, 5000);
+			fulfil(value);
+		}, ms);
 	});
-};
+}
